@@ -373,6 +373,7 @@ NSString *const ATLConversationListViewControllerDeletionModeGlobal = @"Global";
         LYRConversation *conversation = [self.queryController objectAtIndexPath:indexPath];
         [self.delegate conversationListViewController:self didSelectConversation:conversation];
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 #pragma mark - UIActionSheetDelegate

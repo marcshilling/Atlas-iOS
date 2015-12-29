@@ -87,7 +87,7 @@
  @abstract Asks the delegate for an avatar item representing a conversation.
  @param conversationListViewController The `LYRConversationListViewController` in which the item's data will appear.
  @param conversation The `LYRConversation` object.
- @return An object conforming to the `ATLAvatarItem` protocol. 
+ @return An object conforming to the `ATLAvatarItem` protocol.
  @discussion The data provided by the object conforming to the `ATLAvatarItem` protocol will be displayed in an `LYRAvatarImageView`.
  */
 - (id<ATLAvatarItem>)conversationListViewController:(ATLConversationListViewController *)conversationListViewController avatarItemForConversation:(LYRConversation *)conversation;
@@ -129,13 +129,13 @@
 /**
  @abstract Asks the data source to configure the query used to fetch content for the controller if necessary.
  @discussion The `LYRConversationListViewController` uses the following default query:
- 
+
      LYRQuery *query = [LYRQuery queryWithQueryableClass:[LYRConversation class]];
      query.predicate = [LYRPredicate predicateWithProperty:@"participants" predicateOperator:LYRPredicateOperatorIsIn value:self.layerClient.authenticatedUserID];
      query.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"lastMessage.receivedAt" ascending:NO]];
- 
+
  Applications that require advanced query configuration can do so by implementing this data source method.
- 
+
  @param viewController The `ATLConversationViewController` requesting the configuration.
  @param defaultQuery An `LYRQuery` object with the default configuration for the controller.
  @return An `LYRQuery` object with any additional configuration.
@@ -150,6 +150,8 @@
  for the display and selection of Layer conversations.
  */
 @interface ATLConversationListViewController : UITableViewController
+
+- (void)setupConversationDataSource;
 
 ///-------------------------------------------------------
 /// @name Initializing a Conversation List View Controller
@@ -174,7 +176,7 @@
 ///-------------------------------------------------------
 
 /**
- @abstract The `LYRClient` object used to initialize the controller. 
+ @abstract The `LYRClient` object used to initialize the controller.
  @discussion If using storyboards, the property must be set explicitly.
  @raises NSInternalInconsistencyException Raised if the value is mutated after the receiver has been presented.
  */
@@ -228,7 +230,7 @@
 
 /**
  @abstract A boolean value that determines if editing is enabled.
- @discussion When `YES`, an Edit button item will be displayed on the left hand side of the receiver's navigation 
+ @discussion When `YES`, an Edit button item will be displayed on the left hand side of the receiver's navigation
  item which toggles the editing state of the receiver and swiping to delete cells will be enabled.
  @default `YES`
  @raises NSInternalInconsistencyException Raised if the value is mutated after the receiver has been presented.
